@@ -1,0 +1,19 @@
+[Unit]
+Description=ElevenLabs Conversation Listener
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/pi_pal
+Environment="ELEVENLABS_API_KEY=your_api_key_here"
+Environment="AGENT_ID=your_agent_id_here"
+ExecStart=/usr/bin/python3 /home/pi/pi_pal/pi5_elevenlabs_listener.py
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target 
